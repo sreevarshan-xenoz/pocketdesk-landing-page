@@ -29,7 +29,14 @@
         }
         size()
         addEventListener('resize', size)
-        if (!matchMedia('(prefers-reduced-motion: reduce)').matches) d.classList.add('motion')
+        if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+          d.classList.add('motion')
+          // If the page's own script never starts (blocked, or a browser too old for it),
+          // show every scene still rather than leave them waiting for it.
+          setTimeout(function () {
+            if (!window.__pdReady) d.classList.remove('motion')
+          }, 5000)
+        }
       })()
     </script>
   </head>

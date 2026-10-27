@@ -150,7 +150,7 @@ export function Private() {
         <div className={s.proofs} data-proofs>
           <Proof
             title="Each phone, its own switches."
-            body="Give one phone the whole computer and another only files. Turning a switch off ends that phone's session at once."
+            body="Give one phone the whole computer and another only files. Turning off control, sound or the microphone ends that phone's session at once."
           >
             <ul className={s.perms}>
               {perms.map((p, i) => (
@@ -171,30 +171,29 @@ export function Private() {
           </Proof>
 
           <Proof title="Asked first, if you like." body="The computer can ask before each session starts, so no one drives it unseen.">
-            <div className={s.ask} aria-live="polite">
-              {answer === 'ask' && (
-                <>
-                  <span className={s.askIcon}>
-                    <Icon name="shield" size={22} />
-                  </span>
-                  <b>Pixel 8 wants to start a session</b>
-                  <span className={s.askSub}>It may control the computer and hear its sound.</span>
-                  <div className={s.askButtons}>
-                    <button type="button" onClick={() => setAnswer('denied')}>
-                      Deny
-                    </button>
-                    <button type="button" className={s.allow} onClick={() => setAnswer('allowed')}>
-                      Allow
-                    </button>
-                  </div>
-                </>
-              )}
-              {answer !== 'ask' && (
-                <span className={s.askResult}>
-                  <Icon name={answer === 'allowed' ? 'check' : 'x'} size={22} />
-                  {answer === 'allowed' ? 'Session started' : 'Turned away'}
-                </span>
-              )}
+            {/* The buttons stay put, so a keyboard user keeps their place; the answer shows beneath. */}
+            <div className={s.ask}>
+              <span className={s.askIcon}>
+                <Icon name="shield" size={22} />
+              </span>
+              <b>Pixel 8 wants to start a session</b>
+              <span className={s.askSub}>It may control the computer and hear its sound.</span>
+              <div className={s.askButtons}>
+                <button type="button" aria-pressed={answer === 'denied'} onClick={() => setAnswer('denied')}>
+                  Deny
+                </button>
+                <button type="button" className={s.allow} aria-pressed={answer === 'allowed'} onClick={() => setAnswer('allowed')}>
+                  Allow
+                </button>
+              </div>
+              <span className={s.askResult} aria-live="polite">
+                {answer !== 'ask' && (
+                  <>
+                    <Icon name={answer === 'allowed' ? 'check' : 'x'} size={18} />
+                    {answer === 'allowed' ? 'Session started' : 'Turned away'}
+                  </>
+                )}
+              </span>
             </div>
           </Proof>
 

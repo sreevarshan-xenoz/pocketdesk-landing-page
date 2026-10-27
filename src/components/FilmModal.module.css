@@ -1,5 +1,6 @@
+/* As wide as fits, and never taller than the window (a phone held sideways), room left for Close. */
 .dialog {
-  width: min(100vw - 2 * var(--gutter), 1280px);
+  width: min(100vw - 2 * var(--gutter), 1280px, (100svh - 2 * var(--gutter) - 64px) * 16 / 9);
   max-width: none;
   padding: 0;
   border: 0;
@@ -55,4 +56,14 @@
 
 .close:hover {
   background: rgb(255 255 255 / 0.18);
+}
+
+/* No room above the film: Close sits on its corner instead. */
+@media (max-height: 520px) {
+  .close {
+    top: 10px;
+    right: 10px;
+    z-index: 2;
+    background: rgb(0 0 0 / 0.55);
+  }
 }

@@ -95,6 +95,8 @@ export function Hero({ onWatchFilm }: { onWatchFilm: () => void }) {
           '--cw': `${w}px`,
           '--ch': `${DEVICE_H * g.s1}px`,
         })
+        // Placed now: shown to layout (and to assistive tech) without a jump.
+        gsap.set(callouts.current, { visibility: 'visible' })
       }
       place()
       ScrollTrigger.addEventListener('refreshInit', place)

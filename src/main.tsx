@@ -8,6 +8,9 @@ import { StrictMode } from 'react'
 import { createRoot, hydrateRoot } from 'react-dom/client'
 import App from './App'
 
+// Tells index.html's fallback that the scroll scenes will run.
+;(window as Window & { __pdReady?: boolean }).__pdReady = true
+
 const root = document.getElementById('root')!
 const app = (
   <StrictMode>

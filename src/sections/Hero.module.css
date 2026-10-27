@@ -291,6 +291,8 @@
   margin: 0;
   padding: 0;
   pointer-events: none;
+  /* Until the script has measured where the phone ends up: no layout shift when it is placed. */
+  visibility: hidden;
 }
 
 /* Hidden by opacity alone, so the facts are read before they are seen. */

@@ -25,7 +25,7 @@ export function Finale() {
       gsap.set(q('[data-drop]'), { svgOrigin: `${w.cx} ${w.cy}` })
       const tl = gsap.timeline({
         defaults: { ease: 'power2.inOut' },
-        scrollTrigger: { trigger: root.current, start: 'top 75%', end: 'top 10%', scrub: 0.8 },
+        scrollTrigger: { trigger: root.current, start: 'top 75%', end: 'bottom bottom', scrub: 0.8 },
       })
       tl.fromTo(q('[data-drop]'), { y: -330, rotation: -21, scale: 1.18 }, { y: 0, rotation: 0, scale: 1, duration: 1 }, 0)
         .fromTo(q('[data-back]'), { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.3 }, 0.35)

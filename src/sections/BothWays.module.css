@@ -569,8 +569,11 @@
 
 /* ---------- the scroll scene ---------- */
 :global(html.motion) .section {
+  padding: 0 0 clamp(64px, 10vh, 120px);
+}
+
+:global(html.motion) .track {
   height: 440svh;
-  padding: 0;
 }
 
 :global(html.motion) .stage {
@@ -623,7 +626,7 @@
 }
 
 :global(html.motion) .more {
-  margin-top: clamp(20px, 4vh, 44px);
+  margin-top: clamp(28px, 5vh, 56px);
 }
 
 @media (max-width: 960px) {
@@ -640,9 +643,6 @@
     min-height: 9.5em;
   }
 
-  :global(html.motion) .more {
-    display: none;
-  }
 }
 
 @media (max-width: 560px) {

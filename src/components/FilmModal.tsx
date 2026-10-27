@@ -41,7 +41,16 @@ export function FilmModal({ open, onClose }: FilmModalProps) {
       }}
     >
       <div className={s.frame}>
-        <video ref={video} className={s.video} src={open ? FILM.src : undefined} poster={FILM.poster} controls playsInline preload="none" />
+        {/* Source and poster only once it opens: a closed dialog downloads nothing. */}
+        <video
+          ref={video}
+          className={s.video}
+          src={open ? FILM.src : undefined}
+          poster={open ? FILM.poster : undefined}
+          controls
+          playsInline
+          preload="none"
+        />
         <button type="button" className={s.close} onClick={onClose} aria-label="Close the film">
           <Icon name="x" size={20} />
         </button>

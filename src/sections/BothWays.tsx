@@ -45,6 +45,7 @@ const REPLY = "No rush, I'll grab us a table"
 
 export function BothWays() {
   const root = useRef<HTMLElement>(null)
+  const track = useRef<HTMLDivElement>(null)
 
   useGSAP(
     () => {
@@ -60,7 +61,7 @@ export function BothWays() {
 
       const tl = gsap.timeline({
         defaults: { duration: 0.1, ease: 'power2.out' },
-        scrollTrigger: { trigger: el, start: 'top top', end: 'bottom bottom', scrub: 0.6 },
+        scrollTrigger: { trigger: track.current, start: 'top top', end: 'bottom bottom', scrub: 0.6 },
         onUpdate: () => el.classList.toggle(s.ringing, tl.time() > 3.42),
       })
 
@@ -134,6 +135,8 @@ export function BothWays() {
 
   return (
     <section ref={root} id="both-ways" className={s.section} aria-labelledby="both-title">
+      {/* The scroll track: the sticky stage plays while it passes. The list follows it. */}
+      <div ref={track} className={s.track}>
       <div className={s.stage}>
         <div className={cx('container', s.head)}>
           <SectionHead
@@ -320,16 +323,17 @@ export function BothWays() {
             </div>
           </div>
         </div>
-
-        <ul className={cx('container', s.more)} aria-label="And more, both ways">
-          {MORE.map((m) => (
-            <li key={m.text}>
-              <Icon name={m.icon} size={16} />
-              {m.text}
-            </li>
-          ))}
-        </ul>
       </div>
+      </div>
+
+      <ul className={cx('container', s.more)} aria-label="And more, both ways">
+        {MORE.map((m) => (
+          <li key={m.text}>
+            <Icon name={m.icon} size={16} />
+            {m.text}
+          </li>
+        ))}
+      </ul>
     </section>
   )
 }

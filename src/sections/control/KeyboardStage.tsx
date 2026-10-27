@@ -87,6 +87,9 @@ export function KeyboardStage({ active }: { active: boolean }) {
     if (!active || touched || prefersReducedMotion()) return
     let alive = true
     const going = () => alive && !touchedRef.current
+    // Each run starts clean: a run cut short by scrolling away may have left a half-typed line.
+    setText('')
+    setLines(WELCOME)
     ;(async () => {
       await sleep(700)
       while (going()) {

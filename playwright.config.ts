@@ -13,7 +13,8 @@ export default defineConfig({
     { name: 'desktop', use: { ...devices['Desktop Chrome'], channel: 'chrome', viewport: { width: 1440, height: 900 } } },
   ],
   webServer: {
-    command: 'npm run build && npm run preview -- --port 4173 --strictPort --host 127.0.0.1',
+    // The build, served as Pages serves it: also at /pocketdesk-landing-page/, with no fallback page.
+    command: 'npm run build && node scripts/serve-dist.mjs 4173',
     url: 'http://127.0.0.1:4173',
     reuseExistingServer: false,
     timeout: 180_000,

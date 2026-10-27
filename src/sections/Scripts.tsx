@@ -73,9 +73,12 @@ export function Scripts() {
     let alive = true
     ;(async () => {
       while (alive) {
+        // Each run starts clean: one cut short by scrolling away may have left a command running.
         setLines([])
         setNotices([])
         setAnswer('waiting')
+        setTyped('')
+        setBusy(false)
         await sleep(500)
         for (const st of STEPS) {
           for (let i = 1; i <= st.cmd.length; i++) {
@@ -94,6 +97,7 @@ export function Scripts() {
             if (!alive) return
             setAnswer('yes')
             await sleep(500)
+            if (!alive) return
           } else {
             await sleep(st.notice === 'done' ? 1300 : 500)
             if (!alive) return
@@ -137,7 +141,7 @@ export function Scripts() {
               <code>pocketdesk pause</code> the phones' notifications
             </li>
             <li>
-              <code>pocketdesk events</code> for hooks and Home Assistant
+              <code>pocketdesk events</code> to watch what happens, or hook your own commands to it
             </li>
           </ul>
         </div>
