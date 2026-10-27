@@ -1,0 +1,49 @@
+<template>
+  <style>
+    /* film.css */
+    #root {
+      position: absolute;
+      inset: 0;
+    }
+  </style>
+  <div id="root" data-composition-id="pocket" data-width="1920" data-height="1080" data-layout-allow-overflow data-layout-allow-overlap>
+    <!--scene-->
+  </div>
+  <script>
+    // 5. The phone becomes the brand's window and drops into the pocket: the mark, the name, the call.
+    const tl = gsap.timeline({ paused: true })
+    // The window pivots about its own centre (266, 216 in the mark's 512 grid).
+    gsap.set('#pk-drop', { svgOrigin: '266 216' })
+
+    tl.fromTo(['#pk-wall', '#pk-front', '#pk-drop', '#pk-tag', '#pk-cta'], { opacity: 0 }, { opacity: 0, duration: 0.01 }, 0)
+    tl.fromTo('#pk-word', { clipPath: 'inset(0 100% 0 0)' }, { clipPath: 'inset(0 100% 0 0)', duration: 0.01 }, 0)
+
+    // the phone shrinks into the window
+    tl.fromTo('#pk-phone', { scale: 1, opacity: 1 }, { scale: 0.6, opacity: 0, duration: 0.45, ease: 'power2.in' }, 0.15)
+    tl.fromTo('#pk-drop', { opacity: 0, rotation: -9, y: -110, scale: 1.12 }, { opacity: 1, duration: 0.3, ease: 'power1.out' }, 0.3)
+
+    // and drops in, tilting to its 9 degrees, as the pocket rises round it
+    tl.to('#pk-drop', { rotation: 0, y: 0, scale: 1, duration: 0.62, ease: 'power3.in' }, 0.6)
+    tl.to('#pk-wall', { opacity: 1, duration: 0.3, ease: 'power1.out' }, 0.55)
+    tl.fromTo('#pk-front', { y: 140, opacity: 0 }, { y: 0, opacity: 1, duration: 0.55, ease: 'power3.out' }, 0.72)
+    tl.to(
+      '#pk-drop',
+      {
+        keyframes: [
+          { y: 7, duration: 0.08, ease: 'power2.out' },
+          { y: 0, duration: 0.18, ease: 'power2.out' },
+        ],
+      },
+      1.22,
+    )
+
+    // the lockup: the mark steps aside, the name wipes in
+    tl.fromTo('#pk-mark', { x: 0, scale: 1 }, { x: -360, scale: 0.46, duration: 0.7, ease: 'power3.inOut' }, 1.55)
+    tl.to('#pk-word', { clipPath: 'inset(0 0% 0 0)', duration: 0.55, ease: 'power3.out' }, 1.85)
+    tl.fromTo('#pk-tag', { opacity: 0, filter: 'blur(8px)' }, { opacity: 1, filter: 'blur(0px)', duration: 0.35, ease: 'power3.out', immediateRender: false }, 2.35)
+    tl.fromTo('#pk-cta', { opacity: 0, scale: 0.96 }, { opacity: 1, scale: 1, duration: 0.4, ease: 'expo.out', immediateRender: false }, 2.75)
+    tl.to({}, { duration: 0.01 }, 4.98)
+
+    window.__timelines['pocket'] = tl
+  </script>
+</template>

@@ -11,12 +11,13 @@ interface WindowProps {
   focused?: boolean
   /** In the page's flow rather than placed on a desktop. */
   inline?: boolean
+  id?: string
 }
 
 /** The brand's window: rounded, three dots, a quiet title. Used for every window on every screen. */
-export function Window({ title, children, className, style, focused, inline }: WindowProps) {
+export function Window({ title, children, className, style, focused, inline, id }: WindowProps) {
   return (
-    <div className={cx(s.window, focused && s.focused, inline && s.inline, className)} style={style}>
+    <div id={id} className={cx(s.window, focused && s.focused, inline && s.inline, className)} style={style}>
       <div className={s.bar}>
         <span className={s.dots} aria-hidden="true">
           <i />

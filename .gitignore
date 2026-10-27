@@ -22,3 +22,7 @@ playwright-report
 # Film render scratch (the finished film lives in public/video)
 video/renders
 video/.cache
+video/.hyperframes
+# Sound effects are Pixabay-licensed: fine inside the rendered film, not to pass on as loose files.
+# video/assets/SOUNDS.md says how to get them back.
+video/assets/sfx

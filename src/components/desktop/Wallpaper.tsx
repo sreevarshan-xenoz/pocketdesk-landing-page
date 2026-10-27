@@ -1,3 +1,5 @@
+import { useId } from 'react'
+
 /* Night ridges under a moon: the desktop's wallpaper, drawn at 1600x900. */
 
 function stars(count: number, seed: number) {
@@ -17,33 +19,35 @@ function stars(count: number, seed: number) {
 const STARS = stars(110, 20261027)
 
 export function Wallpaper({ className }: { className?: string }) {
+  // Several desktops share a page; each wallpaper's gradients need ids of their own.
+  const id = `wp${useId().replace(/[^a-zA-Z0-9]/g, '')}`
   return (
     <svg className={className} viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
       <defs>
-        <linearGradient id="wp-sky" x1="0" y1="0" x2="0" y2="1">
+        <linearGradient id={`${id}-sky`} x1="0" y1="0" x2="0" y2="1">
           <stop offset="0" stopColor="#030716" />
           <stop offset="0.45" stopColor="#081436" />
           <stop offset="0.68" stopColor="#15297a" />
           <stop offset="1" stopColor="#0a1336" />
         </linearGradient>
-        <radialGradient id="wp-moon" cx="0.5" cy="0.5" r="0.5">
+        <radialGradient id={`${id}-moon`} cx="0.5" cy="0.5" r="0.5">
           <stop offset="0" stopColor="#cfe0ff" stopOpacity="0.35" />
           <stop offset="1" stopColor="#cfe0ff" stopOpacity="0" />
         </radialGradient>
-        <linearGradient id="wp-haze" x1="0" y1="0" x2="0" y2="1">
+        <linearGradient id={`${id}-haze`} x1="0" y1="0" x2="0" y2="1">
           <stop offset="0" stopColor="#4d7dff" stopOpacity="0" />
           <stop offset="0.6" stopColor="#4d7dff" stopOpacity="0.22" />
           <stop offset="1" stopColor="#4d7dff" stopOpacity="0" />
         </linearGradient>
       </defs>
-      <rect width="1600" height="900" fill="url(#wp-sky)" />
+      <rect width="1600" height="900" fill={`url(#${id}-sky)`} />
       {STARS.map((st, i) => (
         <circle key={i} cx={st.x} cy={st.y} r={st.r} fill="#dfe8ff" opacity={st.o} />
       ))}
-      <circle cx="1235" cy="188" r="150" fill="url(#wp-moon)" />
+      <circle cx="1235" cy="188" r="150" fill={`url(#${id}-moon)`} />
       <circle cx="1235" cy="188" r="40" fill="#e6eeff" />
       <circle cx="1252" cy="176" r="36" fill="#0b1a4a" opacity="0.18" />
-      <rect y="380" width="1600" height="260" fill="url(#wp-haze)" />
+      <rect y="380" width="1600" height="260" fill={`url(#${id}-haze)`} />
       <path
         d="M0 590 C120 552 220 512 340 532 S560 462 700 492 S930 552 1060 512 S1290 432 1420 472 S1560 522 1600 502 V900 H0Z"
         fill="#1a2c6c"

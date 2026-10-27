@@ -9,6 +9,7 @@
     "preview": "vite preview",
     "test": "vitest run",
     "test:e2e": "playwright test",
+    "film": "node scripts/build-film.mjs && npx --yes hyperframes@0.8.208 render video -o public/video/pocketdesk-film.mp4 --crf 24 --keyframe-interval 2",
     "lint": "oxlint"
   },
   "dependencies": {

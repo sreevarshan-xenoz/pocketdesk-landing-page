@@ -4,5 +4,5 @@ const base = import.meta.env.BASE_URL
 export const FILM = {
   src: `${base}video/pocketdesk-film.mp4`,
   poster: `${base}video/pocketdesk-film.jpg`,
-  length: '0:40',
+  length: '0:36',
 }

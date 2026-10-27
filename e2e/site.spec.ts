@@ -114,7 +114,10 @@ test('the keyboard demo runs what the visitor types', async ({ page }) => {
   await expect(page.locator('#control-stage')).toContainText('hello from the page')
 })
 
-test('the film opens in a dialog and Escape closes it', async ({ page }) => {
+test('the film opens in a dialog and Escape closes it', async ({ page, request }) => {
+  const film = await request.get('/video/pocketdesk-film.mp4')
+  expect(film.status()).toBe(200)
+  expect(film.headers()['content-type']).toContain('video/mp4')
   await githubDown(page)
   await page.goto('/')
   await page.getByRole('button', { name: /Watch the film/ }).click()
