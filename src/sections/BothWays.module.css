@@ -1,0 +1,662 @@
+/* Without the scroll scene, the section is still: the four beats as a list and
+   the scene showing the second (a text answered from the laptop). With it
+   (html.motion), it is a sticky stage a timeline plays through, beat by beat. */
+
+.section {
+  position: relative;
+  padding: clamp(96px, 14vh, 168px) 0;
+}
+
+.stage {
+  position: relative;
+}
+
+.head > div {
+  max-width: none;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 3.6fr) minmax(0, 8.4fr);
+  gap: clamp(32px, 4.5vw, 72px);
+  align-items: center;
+  margin-top: clamp(28px, 5vh, 56px);
+}
+
+.beats {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.beats li + li {
+  margin-top: 26px;
+}
+
+.beats h3 {
+  font-size: var(--step-2);
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+}
+
+.beats p {
+  margin-top: 12px;
+  color: var(--ink-2);
+}
+
+.ticks {
+  display: none;
+}
+
+/* ---------- the scene ---------- */
+.scene {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-width: 0;
+}
+
+.laptop {
+  flex: 0 0 70%;
+  min-width: 0;
+}
+
+.link {
+  position: relative;
+  flex: 1;
+  height: 2px;
+  margin: 0 -1% 6%;
+  background: linear-gradient(90deg, transparent, rgb(90 209 255 / 0.4) 20%, rgb(123 108 255 / 0.4) 80%, transparent);
+}
+
+.packet {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 22px;
+  height: 8px;
+  margin: -4px 0 0 -11px;
+  border-radius: 4px;
+  background: #dff6ff;
+  box-shadow:
+    0 0 10px 2px rgb(90 209 255 / 0.9),
+    0 0 26px 6px rgb(47 123 255 / 0.45);
+  opacity: 0;
+}
+
+.phone {
+  position: relative;
+  flex: 0 0 23%;
+  min-width: 0;
+}
+
+/* Overlays on the laptop's desktop (in its 1600x900 pixels) and on the phone. */
+.layer {
+  visibility: hidden;
+}
+
+:global(html:not(.motion)) [data-l2],
+:global(html:not(.motion)) [data-p2],
+:global(html:not(.motion)) [data-sent] {
+  visibility: visible;
+}
+
+:global(html.motion) .layer,
+:global(html.motion) [data-sent],
+:global(html.motion) [data-keys],
+:global(html.motion) [data-done],
+:global(html.motion) [data-click] {
+  visibility: hidden;
+  opacity: 0;
+}
+
+/* The first beat is on screen before the timeline moves. */
+:global(html.motion) [data-l1] {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Both notifications sit in the same place on the lock screen. */
+.slot {
+  position: absolute;
+  inset: 0 0 auto;
+}
+
+.notes {
+  padding: 40px 48px;
+  font: 400 30px/1.6 var(--font-sans);
+  color: #c9d0ea;
+}
+
+.notes b {
+  display: block;
+  margin-bottom: 18px;
+  font: 600 44px/1.1 var(--font-display);
+  color: #eef1fb;
+}
+
+.notes p {
+  margin-top: 8px;
+}
+
+.sel {
+  position: relative;
+  color: #fff;
+}
+
+.sel i {
+  position: absolute;
+  inset: -4px -8px;
+  z-index: -1;
+  border-radius: 6px;
+  background: rgb(47 123 255 / 0.55);
+  transform-origin: left;
+}
+
+.keycaps {
+  position: absolute;
+  left: 760px;
+  top: 520px;
+  display: flex;
+  gap: 16px;
+}
+
+.keycaps kbd {
+  display: grid;
+  place-items: center;
+  min-width: 110px;
+  height: 100px;
+  padding: 0 26px;
+  border-radius: 18px;
+  background: linear-gradient(180deg, #f4f6ff, #c9d1ee);
+  box-shadow:
+    inset 0 -8px 0 rgb(0 0 0 / 0.14),
+    0 22px 40px -14px rgb(0 0 0 / 0.7);
+  font: 600 38px/1 var(--font-sans);
+  color: #0b1222;
+}
+
+.toast {
+  position: absolute;
+  left: 1000px;
+  top: 548px;
+  width: 570px;
+  padding: 26px 30px 28px;
+  border-radius: 20px;
+  background: rgb(18 25 48 / 0.97);
+  box-shadow:
+    inset 0 0 0 1px rgb(160 180 255 / 0.16),
+    0 40px 80px -30px rgb(0 0 0 / 0.9);
+  font-family: var(--font-sans);
+}
+
+.toastHead {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 20px;
+  font-weight: 600;
+  color: #dfe5fa;
+}
+
+.toastHead span:last-child {
+  font-weight: 400;
+  color: #7f8ab0;
+}
+
+.msgIcon {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: #22c55e;
+  color: #fff;
+}
+
+.toast b {
+  display: block;
+  margin-top: 16px;
+  font-size: 26px;
+}
+
+.toast p {
+  margin-top: 4px;
+  font-size: 23px;
+  color: #c9d0ea;
+}
+
+.replyBox {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  height: 64px;
+  margin-top: 20px;
+  padding: 0 10px 0 20px;
+  border-radius: 14px;
+  background: rgb(255 255 255 / 0.06);
+  box-shadow: inset 0 0 0 1px rgb(160 180 255 / 0.14);
+  font-size: 22px;
+}
+
+.typed {
+  flex: 1;
+  overflow: hidden;
+  color: #fff;
+  white-space: nowrap;
+}
+
+.send {
+  padding: 10px 20px;
+  border-radius: 10px;
+  background: var(--blue);
+  color: #fff;
+  font-weight: 600;
+}
+
+.files {
+  padding: 38px 44px;
+  font-family: var(--font-sans);
+}
+
+.fileRow {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
+
+.fileIcon {
+  display: grid;
+  place-items: center;
+  width: 76px;
+  height: 76px;
+  border-radius: 18px;
+  background: rgb(47 123 255 / 0.15);
+  color: var(--sky);
+}
+
+.fileName {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+.fileName b {
+  font-size: 30px;
+}
+
+.fileName span {
+  margin-top: 4px;
+  font-size: 22px;
+  color: #8d97b8;
+}
+
+.pct {
+  font: 600 40px/1 var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  color: #eef1fb;
+}
+
+.bar {
+  height: 14px;
+  margin-top: 36px;
+  overflow: hidden;
+  border-radius: 7px;
+  background: rgb(255 255 255 / 0.08);
+}
+
+.bar i,
+.phoneBar i {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--sky), var(--blue));
+  transform: scaleX(0.42);
+  transform-origin: left;
+}
+
+.fileFoot {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 24px;
+  font-size: 21px;
+  color: #8d97b8;
+}
+
+.checked {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #4ade80;
+  font-weight: 600;
+}
+
+.tray {
+  position: absolute;
+  left: 1214px;
+  top: 48px;
+  width: 360px;
+  padding: 12px;
+  border-radius: 18px;
+  background: rgb(16 22 42 / 0.98);
+  box-shadow:
+    inset 0 0 0 1px rgb(160 180 255 / 0.16),
+    0 40px 80px -30px rgb(0 0 0 / 0.9);
+  font: 500 21px/1.2 var(--font-sans);
+}
+
+.trayHead {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px 16px;
+  border-bottom: 1px solid rgb(160 180 255 / 0.1);
+  font-weight: 600;
+}
+
+.trayOn {
+  margin-left: auto;
+  font-size: 16px;
+  font-weight: 500;
+  color: #4ade80;
+}
+
+.trayItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 4px;
+  padding: 14px;
+  border-radius: 10px;
+  color: #c9d0ea;
+}
+
+.trayHot {
+  background: var(--blue);
+  color: #fff;
+}
+
+.trayCursor {
+  position: absolute;
+  left: 230px;
+  top: 112px;
+  filter: drop-shadow(0 4px 6px rgb(0 0 0 / 0.5));
+}
+
+/* On the phone (cqw = a hundredth of its width). */
+.sentLine {
+  display: block;
+  margin-top: 2cqw;
+  padding-top: 2cqw;
+  border-top: 1px solid rgb(160 180 255 / 0.12);
+  color: #eef1fb;
+}
+
+.sentLine em {
+  display: block;
+  margin-top: 0.6cqw;
+  font-size: 3cqw;
+  font-style: normal;
+  color: var(--sky);
+}
+
+.phoneBar {
+  display: block;
+  height: 1.6cqw;
+  margin-top: 2cqw;
+  overflow: hidden;
+  border-radius: 1cqw;
+  background: rgb(255 255 255 / 0.1);
+}
+
+.phoneMeta {
+  display: block;
+  margin-top: 1.6cqw;
+  font-size: 3.2cqw;
+  color: #8d97b8;
+}
+
+.clip {
+  position: absolute;
+  left: 4cqw;
+  right: 14cqw;
+  bottom: 7cqw;
+  z-index: 3;
+  display: flex;
+  gap: 3cqw;
+  align-items: flex-start;
+  padding: 3.4cqw 4cqw;
+  border-radius: 4cqw;
+  background: rgb(236 240 255 / 0.96);
+  color: #0b1222;
+  font-size: 3.8cqw;
+  line-height: 1.35;
+  box-shadow: 0 4cqw 10cqw -4cqw rgb(0 0 0 / 0.8);
+}
+
+.clip svg {
+  flex: none;
+  width: 5cqw;
+  height: 5cqw;
+  margin-top: 0.4cqw;
+}
+
+.clip em {
+  display: block;
+  font-size: 3cqw;
+  font-style: normal;
+  font-weight: 600;
+  color: var(--blue-2);
+}
+
+.ring {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.8cqw;
+  padding: 0 8cqw;
+  background: radial-gradient(circle at 50% 40%, #16245a, #060a18 70%);
+  font-size: 3.9cqw;
+  text-align: center;
+  color: #eef1fb;
+}
+
+.ring b {
+  margin-top: 4cqw;
+  font: 600 6.6cqw/1.15 var(--font-display);
+}
+
+.ring span {
+  color: #aab3d1;
+}
+
+.ringIcon {
+  display: grid;
+  place-items: center;
+  width: 24cqw;
+  height: 24cqw;
+  border-radius: 50%;
+  background: rgb(90 209 255 / 0.16);
+  color: var(--sky);
+}
+
+.ringIcon svg {
+  width: 12cqw;
+  height: 12cqw;
+}
+
+.ring .ringStop {
+  margin-top: 8cqw;
+  padding: 3cqw 12cqw;
+  border-radius: 99cqw;
+  background: #ff5f57;
+  color: #fff;
+  font-weight: 600;
+}
+
+.torch {
+  position: absolute;
+  inset: -3%;
+  border-radius: 14cqw;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.ringing .phone {
+  animation: buzz 0.11s linear infinite alternate;
+}
+
+.ringing .ringIcon {
+  animation: pulse 0.9s ease-in-out infinite;
+}
+
+.ringing .torch {
+  animation: torch 0.8s steps(1) infinite;
+  box-shadow: 0 0 40px 10px rgb(255 255 255 / 0.5);
+}
+
+@keyframes buzz {
+  from {
+    transform: translateX(-2px) rotate(-1deg);
+  }
+  to {
+    transform: translateX(2px) rotate(1deg);
+  }
+}
+
+@keyframes pulse {
+  50% {
+    transform: scale(1.08);
+  }
+}
+
+@keyframes torch {
+  50% {
+    opacity: 1;
+  }
+}
+
+/* ---------- and more ---------- */
+.more {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 56px;
+  padding: 0;
+  list-style: none;
+}
+
+.more li {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 14px;
+  border-radius: 999px;
+  background: rgb(255 255 255 / 0.03);
+  box-shadow: inset 0 0 0 1px var(--line);
+  font-size: 14.5px;
+  color: var(--ink-2);
+}
+
+.more svg {
+  color: var(--sky);
+}
+
+/* ---------- the scroll scene ---------- */
+:global(html.motion) .section {
+  height: 440svh;
+  padding: 0;
+}
+
+:global(html.motion) .stage {
+  position: sticky;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100svh;
+  padding-top: 64px;
+  overflow: hidden;
+}
+
+:global(html.motion) .beats {
+  display: grid;
+  min-height: 11em;
+}
+
+:global(html.motion) .beats li {
+  grid-area: 1 / 1;
+  margin: 0;
+  visibility: hidden;
+  opacity: 0;
+}
+
+:global(html.motion) .beats li:first-child {
+  visibility: visible;
+  opacity: 1;
+}
+
+:global(html.motion) .ticks {
+  display: flex;
+  gap: 8px;
+  margin-top: 26px;
+}
+
+.ticks span {
+  flex: 1;
+  height: 3px;
+  overflow: hidden;
+  border-radius: 2px;
+  background: var(--line-2);
+}
+
+.ticks i {
+  display: block;
+  height: 100%;
+  background: var(--sky);
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+:global(html.motion) .more {
+  margin-top: clamp(20px, 4vh, 44px);
+}
+
+@media (max-width: 960px) {
+  .layout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 24px;
+  }
+
+  .scene {
+    order: -1;
+  }
+
+  :global(html.motion) .beats {
+    min-height: 9.5em;
+  }
+
+  :global(html.motion) .more {
+    display: none;
+  }
+}
+
+@media (max-width: 560px) {
+  :global(html.motion) .stage {
+    justify-content: flex-start;
+    padding-top: 84px;
+  }
+
+  .beats h3 {
+    font-size: 1.35rem;
+  }
+
+  .beats p {
+    font-size: 0.95rem;
+  }
+}
