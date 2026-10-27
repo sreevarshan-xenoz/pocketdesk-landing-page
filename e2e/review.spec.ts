@@ -2,14 +2,20 @@ import { expect, type Page, test } from '@playwright/test'
 
 const githubDown = (page: Page) => page.route('https://api.github.com/**', (route) => route.abort())
 
-const scrollTo = (page: Page, selector: string, offset = 0) =>
-  page.evaluate(
-    ([sel, off]) => {
-      const el = document.querySelector(sel as string)!
-      window.scrollTo(0, el.getBoundingClientRect().top + window.scrollY + (off as number))
-    },
-    [selector, offset],
-  )
+/** Scrolls a section into place once the fonts are in, then once more in case the layout moved. */
+const scrollTo = async (page: Page, selector: string, offset = 0) => {
+  await page.evaluate(() => document.fonts.ready)
+  for (let pass = 0; pass < 2; pass++) {
+    await page.evaluate(
+      ([sel, off]) => {
+        const el = document.querySelector(sel as string)!
+        window.scrollTo(0, el.getBoundingClientRect().top + window.scrollY + (off as number))
+      },
+      [selector, offset],
+    )
+    await page.waitForTimeout(150)
+  }
+}
 
 test('from the Pages project path, nothing is asked of the domain root', async ({ page }) => {
   const outside: string[] = []

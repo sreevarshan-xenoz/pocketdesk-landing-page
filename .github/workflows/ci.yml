@@ -23,3 +23,9 @@ jobs:
       - run: npm test
       # End-to-end tests build the site, serve it, and drive it with the runner's Chrome.
       - run: npm run test:e2e
+      - if: failure()
+        uses: actions/upload-artifact@v7
+        with:
+          name: playwright-results
+          path: test-results
+          retention-days: 7
