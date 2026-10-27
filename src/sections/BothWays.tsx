@@ -137,7 +137,6 @@ export function BothWays() {
       <div className={s.stage}>
         <div className={cx('container', s.head)}>
           <SectionHead
-            index="02"
             label="Both ways"
             id="both-title"
             size="md"

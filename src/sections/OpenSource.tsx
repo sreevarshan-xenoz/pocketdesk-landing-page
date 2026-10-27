@@ -45,7 +45,6 @@ export function OpenSource() {
       <div className="container">
         <div className={s.top}>
           <SectionHead
-            index="06"
             label="Open source"
             id="open-title"
             size="md"

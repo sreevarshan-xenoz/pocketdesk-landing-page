@@ -98,7 +98,6 @@ export function Anywhere() {
       <div className={s.stage}>
         <div className="container">
           <SectionHead
-            index="03"
             label="Anywhere"
             id="anywhere-title"
             size="md"

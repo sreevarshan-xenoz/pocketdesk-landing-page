@@ -4,8 +4,6 @@ import { gsap, motionOn, useGSAP } from '../lib/gsap'
 import s from './SectionHead.module.css'
 
 interface SectionHeadProps {
-  /** "01", "02"…: the section's place in the story. */
-  index?: string
   label: string
   id: string
   title: ReactNode
@@ -17,7 +15,7 @@ interface SectionHeadProps {
 }
 
 /** A section's eyebrow, title and lede, rising in as they come into view. */
-export function SectionHead({ index, label, id, title, lede, align = 'left', size = 'lg', className }: SectionHeadProps) {
+export function SectionHead({ label, id, title, lede, align = 'left', size = 'lg', className }: SectionHeadProps) {
   const root = useRef<HTMLDivElement>(null)
   useGSAP(
     () => {
@@ -36,8 +34,11 @@ export function SectionHead({ index, label, id, title, lede, align = 'left', siz
   return (
     <div ref={root} className={cx(s.head, align === 'center' && s.center, size === 'md' && s.md, className)}>
       <p className={s.eyebrow}>
-        {index && <span className={s.index}>{index}</span>}
-        <span className={s.rule} aria-hidden="true" />
+        <span className={s.dots} aria-hidden="true">
+          <i />
+          <i />
+          <i />
+        </span>
         {label}
       </p>
       <h2 id={id} className={s.title}>

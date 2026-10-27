@@ -83,7 +83,6 @@ export function Private() {
     <section ref={root} id="private" className={s.section} aria-labelledby="private-title">
       <div className="container">
         <SectionHead
-          index="04"
           label="Yours alone"
           id="private-title"
           align="center"

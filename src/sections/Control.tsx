@@ -27,7 +27,6 @@ export function Control() {
       <div className={cx('container', s.grid)}>
         <div className={s.text}>
           <SectionHead
-            index="01"
             label="Control"
             id="control-title"
             size="md"

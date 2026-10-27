@@ -116,7 +116,6 @@ export function Scripts() {
       <div className={cx('container', s.grid)}>
         <div className={s.text}>
           <SectionHead
-            index="05"
             label="For your terminal"
             id="scripts-title"
             size="md"
