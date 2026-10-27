@@ -31,7 +31,7 @@ export function Finale() {
         .fromTo(q('[data-back]'), { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.3 }, 0.35)
         .fromTo(q('[data-front]'), { y: 140, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.55, ease: 'power3.out' }, 0.45)
         .fromTo(q('[data-scene]'), { autoAlpha: 1 }, { autoAlpha: 0, duration: 0.3 }, 0.78)
-        .fromTo(q('[data-copy] > *'), { y: 30, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.3, stagger: 0.08, ease: 'power3.out' }, 0.8)
+        .fromTo(q('[data-copy] > *'), { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.3, stagger: 0.08, ease: 'power3.out' }, 0.8)
     },
     { scope: root },
   )

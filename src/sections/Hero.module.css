@@ -293,10 +293,10 @@
   pointer-events: none;
 }
 
+/* Hidden by opacity alone, so the facts are read before they are seen. */
 :global(html.motion) .callouts li {
   position: absolute;
   opacity: 0;
-  visibility: hidden;
 }
 
 :global(html.motion) .callouts li:nth-child(1) {

@@ -54,3 +54,8 @@
   font: 500 13px/1 var(--font-mono);
   color: var(--ink-3);
 }
+
+/* On the light button, a darker grey keeps 4.5:1. */
+.primary .meta {
+  color: #4b5677;
+}

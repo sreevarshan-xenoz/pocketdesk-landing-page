@@ -69,7 +69,7 @@ export function Private() {
       if (!motionOn()) return
       gsap.from(gsap.utils.toArray<HTMLElement>('[data-reveal]', root.current), {
         y: 40,
-        autoAlpha: 0,
+        opacity: 0,
         duration: 1.1,
         ease: 'expo.out',
         stagger: 0.08,

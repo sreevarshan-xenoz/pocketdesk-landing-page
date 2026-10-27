@@ -1,9 +1,9 @@
 name: CI
 
+# Pull requests only: a push to a branch with an open pull request would otherwise run it twice.
 on:
   pull_request:
-  push:
-    branches-ignore: [main]
+  workflow_dispatch:
 
 permissions:
   contents: read

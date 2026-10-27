@@ -589,15 +589,14 @@
   min-height: 11em;
 }
 
+/* All four beats stay in the accessibility tree; only the one on screen shows. */
 :global(html.motion) .beats li {
   grid-area: 1 / 1;
   margin: 0;
-  visibility: hidden;
   opacity: 0;
 }
 
 :global(html.motion) .beats li:first-child {
-  visibility: visible;
   opacity: 1;
 }
 

@@ -22,7 +22,7 @@ export function SectionHead({ label, id, title, lede, align = 'left', size = 'lg
       if (!motionOn()) return
       gsap.from(root.current!.children, {
         y: 30,
-        autoAlpha: 0,
+        opacity: 0,
         duration: 1.1,
         ease: 'expo.out',
         stagger: 0.09,

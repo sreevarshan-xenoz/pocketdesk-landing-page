@@ -80,8 +80,8 @@ export function BothWays() {
 
       // The first beat is already on screen as the section arrives; the others come in turn.
       BEATS.forEach((_, i) => {
-        if (i > 0) tl.fromTo(texts[i], { autoAlpha: 0, y: 26 }, { autoAlpha: 1, y: 0, duration: 0.08 }, i + 0.01)
-        if (i < BEATS.length - 1) tl.to(texts[i], { autoAlpha: 0, y: -26, duration: 0.08 }, i + 0.92)
+        if (i > 0) tl.fromTo(texts[i], { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: 0.08 }, i + 0.01)
+        if (i < BEATS.length - 1) tl.to(texts[i], { opacity: 0, y: -26, duration: 0.08 }, i + 0.92)
         tl.fromTo(ticks[i], { scaleX: 0 }, { scaleX: 1, duration: 0.9, ease: 'none' }, i + 0.05)
       })
 

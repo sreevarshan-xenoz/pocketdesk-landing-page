@@ -119,8 +119,8 @@ export function Hero({ onWatchFilm }: { onWatchFilm: () => void }) {
         .fromTo(line2.current, { y: 0, yPercent: 110 }, { y: 0, yPercent: 0, duration: 0.24, ease: 'power3.out' }, 0.34)
         .fromTo(
           callouts.current!.children,
-          { autoAlpha: 0, y: 18 },
-          { autoAlpha: 1, y: 0, duration: 0.14, stagger: 0.035, ease: 'power2.out' },
+          { opacity: 0, y: 18 },
+          { opacity: 1, y: 0, duration: 0.14, stagger: 0.035, ease: 'power2.out' },
           0.62,
         )
         .to({}, { duration: 0.14 })

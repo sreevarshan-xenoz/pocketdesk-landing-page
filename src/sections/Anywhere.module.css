@@ -187,12 +187,25 @@
   max-height: 40svh;
 }
 
-:global(html.motion) .roads li {
-  opacity: 0.32;
+/* The live road is marked, not the others faded: every road keeps its contrast. */
+:global(html.motion) .roads h3 {
+  color: var(--ink-2);
+  transition: color 0.4s;
 }
 
-:global(html.motion) .roads li.on {
-  opacity: 1;
+:global(html.motion) .roads .on h3 {
+  color: var(--ink);
+}
+
+:global(html.motion) .roads .n {
+  transition:
+    background-color 0.4s,
+    color 0.4s;
+}
+
+:global(html.motion) .roads .on .n {
+  background: var(--sky);
+  color: #04111f;
 }
 
 @media (max-width: 760px) {
