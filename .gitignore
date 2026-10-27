@@ -1,0 +1,24 @@
+# Dependencies and builds
+node_modules
+dist
+dist-ssr
+*.local
+
+# Logs
+*.log
+
+# Test output
+test-results
+playwright-report
+.playwright-mcp
+
+# Local tool state
+.superpowers
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+
+# Film render scratch (the finished film lives in public/video)
+video/renders
+video/.cache
