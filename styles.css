@@ -445,6 +445,9 @@ h2 { font-size: clamp(34px, 5vw, 58px); font-weight: 700; letter-spacing: -0.035
 .dl p { color: var(--text-2); font-size: 15px; flex: 1; }
 .dl .btn { margin-top: 10px; }
 .dl__meta { font: 500 12px/1.4 var(--font-mono); color: var(--text-3); text-align: center; white-space: nowrap; }
+.dl__alt { align-self: center; font-size: 13.5px; color: var(--text-2); border-bottom: 1px solid var(--border-strong); transition: color .2s, border-color .2s; }
+.dl__alt:hover { color: var(--text); border-color: var(--cyan); }
+.dl__alt[hidden] { display: none; }
 .downloads__more { margin-top: 30px; display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; color: var(--text-3); font-size: 14.5px; }
 .downloads__more a { color: var(--text-2); border-bottom: 1px solid var(--border-strong); transition: color .2s, border-color .2s; }
 .downloads__more a:hover { color: var(--text); border-color: var(--cyan); }

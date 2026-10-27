@@ -171,6 +171,14 @@
   }
 
   // ---- Latest release: version label and direct download links ----
+  function kindLabel(file) {
+    if (/-setup\.exe$/.test(file)) return "Installer";
+    if (/\.deb$/.test(file)) return ".deb · Debian, Ubuntu";
+    if (/\.tar\.gz$/.test(file)) return ".tar.gz";
+    if (/\.zip$/.test(file)) return ".zip";
+    if (/\.apk$/.test(file)) return ".apk";
+    return file;
+  }
   function formatSize(bytes) {
     return bytes >= 1048576 ? (bytes / 1048576).toFixed(1) + " MB" : Math.round(bytes / 1024) + " KB";
   }
@@ -188,17 +196,34 @@
             date.toLocaleDateString(undefined, { year: "numeric", month: "long", day: "numeric" }) +
             ". Every download comes from GitHub, with SHA-256 checksums alongside.";
         }
-        (release.assets || []).forEach(function (asset) {
-          document.querySelectorAll("[data-asset]").forEach(function (a) {
-            if (asset.name.indexOf(a.dataset.asset) !== -1) {
-              a.href = asset.browser_download_url;
-              var meta = document.querySelector('[data-meta="' + a.dataset.asset + '"]');
-              if (meta) {
-                meta.textContent = meta.textContent.split(" · ")[0] + " · " + formatSize(asset.size);
-                meta.title = asset.name;
-              }
-            }
-          });
+        var assets = release.assets || [];
+        var find = function (suffix) {
+          for (var i = 0; i < assets.length; i++) {
+            if (assets[i].name.slice(-suffix.length) === suffix) return assets[i];
+          }
+          return null;
+        };
+        // Each button takes the first of its kinds the release has: the
+        // installer before the zip, the .deb before the tarball.
+        document.querySelectorAll("[data-assets]").forEach(function (a) {
+          var kinds = a.dataset.assets.split(" ");
+          var chosen = null;
+          for (var i = 0; i < kinds.length && !chosen; i++) chosen = find(kinds[i]);
+          if (!chosen) return;
+          a.href = chosen.browser_download_url;
+          var card = a.closest(".dl");
+          var meta = card && card.querySelector(".dl__meta");
+          if (meta) {
+            meta.textContent = kindLabel(chosen.name) + " · " + formatSize(chosen.size);
+            meta.title = chosen.name;
+          }
+          var alt = card && card.querySelector("[data-alt]");
+          var other = alt && find(alt.dataset.alt);
+          if (other && other !== chosen) {
+            alt.href = other.browser_download_url;
+            alt.title = other.name;
+            alt.hidden = false;
+          }
         });
       })
       .catch(function () { /* The links fall back to the releases page. */ });
