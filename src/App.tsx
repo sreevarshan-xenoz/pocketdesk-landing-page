@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { FilmModal } from './components/FilmModal'
 import { Nav } from './components/Nav'
 import { initMotion } from './lib/motion'
+import { Anywhere } from './sections/Anywhere'
 import { BothWays } from './sections/BothWays'
 import { Control } from './sections/Control'
 import { Hero } from './sections/Hero'
@@ -20,6 +21,7 @@ export default function App() {
         <Hero onWatchFilm={() => setFilm(true)} />
         <Control />
         <BothWays />
+        <Anywhere />
         <div style={{ height: '60vh' }} />
       </main>
       <FilmModal open={film} onClose={() => setFilm(false)} />

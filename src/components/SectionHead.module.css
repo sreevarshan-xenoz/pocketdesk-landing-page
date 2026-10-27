@@ -3,8 +3,14 @@
 }
 
 .center {
+  max-width: 980px;
   margin-inline: auto;
   text-align: center;
+}
+
+.center .lede {
+  max-width: 640px;
+  margin-inline: auto;
 }
 
 .center .eyebrow {

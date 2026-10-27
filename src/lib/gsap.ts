@@ -1,9 +1,11 @@
 import { useGSAP } from '@gsap/react'
 import { gsap } from 'gsap'
+import { DrawSVGPlugin } from 'gsap/DrawSVGPlugin'
+import { MotionPathPlugin } from 'gsap/MotionPathPlugin'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 // Registered on import, before any component builds a scroll timeline.
-gsap.registerPlugin(useGSAP, ScrollTrigger)
+gsap.registerPlugin(useGSAP, ScrollTrigger, MotionPathPlugin, DrawSVGPlugin)
 
 export { gsap, ScrollTrigger, useGSAP }
 

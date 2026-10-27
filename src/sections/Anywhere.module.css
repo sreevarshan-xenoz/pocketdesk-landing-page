@@ -1,0 +1,216 @@
+.section {
+  position: relative;
+  padding: clamp(96px, 14vh, 168px) 0;
+}
+
+.stage {
+  position: relative;
+}
+
+.map {
+  width: 100%;
+  margin: clamp(24px, 4vh, 48px) auto 0;
+  overflow: visible;
+}
+
+.block {
+  fill: rgb(47 123 255 / 0.045);
+  stroke: #24356f;
+  stroke-width: 2;
+}
+
+.blockLabel {
+  font: 500 15px var(--font-mono);
+  letter-spacing: 0.16em;
+  fill: #5f6c96;
+}
+
+.device {
+  fill: #0b1430;
+  stroke: #4a64b8;
+  stroke-width: 2.5;
+}
+
+.deviceLine {
+  fill: none;
+  stroke: #4a64b8;
+  stroke-width: 4;
+  stroke-linecap: round;
+}
+
+.phoneGlow {
+  fill: rgb(90 209 255 / 0.1);
+}
+
+.road {
+  fill: none;
+  stroke: url(#aw-line);
+  stroke-width: 4;
+  stroke-linecap: round;
+}
+
+.roadDashed {
+  fill: none;
+  stroke: url(#aw-line);
+  stroke-width: 3;
+  stroke-dasharray: 2 10;
+  stroke-linecap: round;
+}
+
+.tunnel {
+  fill: none;
+  stroke: rgb(90 209 255 / 0.12);
+  stroke-width: 26;
+  stroke-linecap: round;
+}
+
+.relayPath {
+  fill: none;
+  stroke: #7b6cff;
+  stroke-width: 2.5;
+  stroke-dasharray: 8 10;
+  opacity: 0.75;
+}
+
+.relay {
+  fill: #121a38;
+  stroke: #7b6cff;
+  stroke-width: 2.5;
+}
+
+.relayLock {
+  fill: none;
+  stroke: #c9c2ff;
+  stroke-width: 2;
+  stroke-linejoin: round;
+}
+
+.roadLabel {
+  font: 500 15px var(--font-mono);
+  letter-spacing: 0.04em;
+  fill: #8d97b8;
+}
+
+.small {
+  font: 500 13px var(--font-mono);
+  letter-spacing: 0.1em;
+  fill: #56628a;
+}
+
+.router {
+  fill: #131c3a;
+  stroke: #3a4f95;
+  stroke-width: 2;
+}
+
+.spark {
+  fill: rgb(223 246 255 / 0.35);
+  stroke: #dff6ff;
+  stroke-width: 2;
+  opacity: 0;
+}
+
+.packet {
+  fill: #dff6ff;
+  filter: drop-shadow(0 0 6px rgb(90 209 255 / 0.95));
+  opacity: 0;
+}
+
+.packetSlow {
+  fill: #c9c2ff;
+  filter: drop-shadow(0 0 5px rgb(123 108 255 / 0.9));
+  opacity: 0;
+}
+
+.roads {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(20px, 3vw, 40px);
+  margin: clamp(24px, 4vh, 44px) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.roads li {
+  transition:
+    opacity 0.4s,
+    transform 0.4s var(--ease-out);
+}
+
+.n {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 1px var(--line-2);
+  font: 600 13px/1 var(--font-mono);
+  color: var(--sky);
+}
+
+.roads h3 {
+  margin-top: 14px;
+  font-size: var(--step-1);
+  letter-spacing: -0.02em;
+}
+
+.roads p {
+  margin-top: 8px;
+  font-size: 15.5px;
+  color: var(--ink-2);
+}
+
+/* Still, the map shows the furthest road: through both routers, with the relay beside it. */
+:global(html:not(.motion)) .map [data-road='wifi'],
+:global(html:not(.motion)) .map [data-road='tail'] {
+  display: none;
+}
+
+/* ---------- the scroll scene ---------- */
+:global(html.motion) .section {
+  height: 330svh;
+  padding: 0;
+}
+
+:global(html.motion) .stage {
+  position: sticky;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100svh;
+  padding-top: 64px;
+  overflow: hidden;
+}
+
+:global(html.motion) .map {
+  max-height: 40svh;
+}
+
+:global(html.motion) .roads li {
+  opacity: 0.32;
+}
+
+:global(html.motion) .roads li.on {
+  opacity: 1;
+}
+
+@media (max-width: 760px) {
+  .roads {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
+  }
+
+  :global(html.motion) .roads {
+    display: grid;
+  }
+
+  :global(html.motion) .roads li {
+    grid-area: 1 / 1;
+    opacity: 0;
+  }
+
+  :global(html.motion) .roads li.on {
+    opacity: 1;
+  }
+}
