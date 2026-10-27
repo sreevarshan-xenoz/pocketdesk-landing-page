@@ -6,6 +6,8 @@ import { Anywhere } from './sections/Anywhere'
 import { BothWays } from './sections/BothWays'
 import { Control } from './sections/Control'
 import { Hero } from './sections/Hero'
+import { Private } from './sections/Private'
+import { Scripts } from './sections/Scripts'
 
 export default function App() {
   const [film, setFilm] = useState(false)
@@ -22,6 +24,8 @@ export default function App() {
         <Control />
         <BothWays />
         <Anywhere />
+        <Private />
+        <Scripts />
         <div style={{ height: '60vh' }} />
       </main>
       <FilmModal open={film} onClose={() => setFilm(false)} />
