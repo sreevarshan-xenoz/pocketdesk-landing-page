@@ -1,0 +1,147 @@
+.section {
+  position: relative;
+  padding: clamp(96px, 14vh, 168px) 0;
+}
+
+.top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 32px;
+}
+
+.ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.facts {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin: clamp(48px, 8vh, 80px) 0 0;
+  border-top: 1px solid var(--line);
+}
+
+.facts > div {
+  padding: 26px 24px 0 0;
+}
+
+.facts > div + div {
+  padding-left: 24px;
+  border-left: 1px solid var(--line);
+}
+
+.facts dt {
+  font: 600 var(--step-1) / 1.15 var(--font-display);
+  letter-spacing: -0.02em;
+}
+
+.facts dd {
+  margin: 8px 0 0;
+  font-size: 15px;
+  color: var(--ink-2);
+}
+
+.compareTitle {
+  margin-top: clamp(64px, 10vh, 112px);
+  font-size: var(--step-2);
+  letter-spacing: -0.03em;
+}
+
+.tableWrap {
+  margin-top: 28px;
+  overflow-x: auto;
+  border-radius: var(--radius-lg);
+  box-shadow: inset 0 0 0 1px var(--line);
+}
+
+.table {
+  width: 100%;
+  min-width: 720px;
+  border-collapse: collapse;
+  font-size: 15px;
+}
+
+.table th,
+.table td {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  vertical-align: middle;
+}
+
+.table tbody tr:last-child th,
+.table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.table thead th {
+  font: 500 12.5px/1.2 var(--font-mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.table tbody th {
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.table td {
+  color: var(--ink-2);
+}
+
+.table small {
+  display: block;
+  margin-top: 4px;
+  font-size: 12.5px;
+  color: var(--ink-3);
+}
+
+.us {
+  background: rgb(47 123 255 / 0.07);
+}
+
+.table thead .us {
+  color: var(--accent-text);
+}
+
+.mark {
+  display: inline-grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+}
+
+.yes {
+  background: rgb(74 222 128 / 0.14);
+  color: #4ade80;
+}
+
+.no {
+  background: rgb(255 95 87 / 0.12);
+  color: #ff7a72;
+}
+
+.part {
+  background: rgb(254 188 46 / 0.14);
+  color: var(--dot-yellow);
+}
+
+@media (max-width: 900px) {
+  .facts {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .facts > div:nth-child(3) {
+    padding-left: 0;
+    border-left: 0;
+  }
+
+  .facts > div {
+    padding-bottom: 22px;
+  }
+}

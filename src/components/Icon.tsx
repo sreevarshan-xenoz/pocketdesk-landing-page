@@ -30,6 +30,7 @@ const STROKE: Record<string, string> = {
   terminal: 'M4 5h16v14H4zM7.5 9.5l3 2.5-3 2.5M12.5 15h4',
   code: 'M8 7l-5 5 5 5M16 7l5 5-5 5',
   menu: 'M4 7h16M4 12h16M4 17h16',
+  minus: 'M6.5 12h11',
   more: 'M5 12h.01M12 12h.01M19 12h.01',
   battery: 'M3 8h15v8H3zM21 11v2M5.5 10.5h7v3h-7z',
   fingerprint: 'M7 10a5 5 0 0 1 10 0v2a14 14 0 0 1-1 5.2M12 10v3a10 10 0 0 1-2.5 6.6M9.5 13.8a7 7 0 0 1-1.6 4M4.5 14.5c.4-1.4.5-2.9.5-4.5a7 7 0 0 1 11.5-5.4M19 9.5V12c0 1.1-.1 2.2-.3 3.2',
