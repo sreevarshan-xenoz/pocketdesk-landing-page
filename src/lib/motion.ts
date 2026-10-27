@@ -1,6 +1,5 @@
-import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Lenis from 'lenis'
+import { gsap, ScrollTrigger } from './gsap'
 
 let lenis: Lenis | null = null
 
@@ -14,7 +13,6 @@ export function prefersReducedMotion(): boolean {
  * Returns the cleanup.
  */
 export function initMotion(): () => void {
-  gsap.registerPlugin(ScrollTrigger)
   const refresh = () => ScrollTrigger.refresh()
   document.fonts?.ready.then(refresh)
   window.addEventListener('load', refresh)

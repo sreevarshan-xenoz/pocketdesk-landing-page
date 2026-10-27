@@ -1,0 +1,347 @@
+/* Without the scroll scene (no script, or reduced motion) the hero is a plain
+   column: words, then the phone. With it (html.motion, set before first paint),
+   it becomes a sticky stage that a timeline in Hero.tsx scrubs through. */
+
+.hero {
+  --pad-top: calc(64px + clamp(28px, 7svh, 84px));
+  --h1: min(var(--step-5), 13.2vw);
+  position: relative;
+}
+
+.stage {
+  position: relative;
+  padding-bottom: 72px;
+}
+
+.copy {
+  position: relative;
+  z-index: 3;
+  padding: var(--pad-top) var(--gutter) 0;
+  text-align: center;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  height: 32px;
+  padding: 0 14px 0 12px;
+  border-radius: 999px;
+  background: rgb(255 255 255 / 0.03);
+  box-shadow: inset 0 0 0 1px var(--line);
+  font: 500 12px/1 var(--font-mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  text-decoration: none;
+  transition:
+    color 0.2s,
+    box-shadow 0.2s;
+}
+
+.eyebrow:hover {
+  color: var(--ink);
+  box-shadow: inset 0 0 0 1px var(--line-2);
+}
+
+@media (max-width: 520px) {
+  .wide {
+    display: none;
+  }
+}
+
+.dots {
+  display: flex;
+  gap: 4px;
+}
+
+.dots i {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--dot-red);
+}
+
+.dots i:nth-child(2) {
+  background: var(--dot-yellow);
+}
+
+.dots i:nth-child(3) {
+  background: var(--dot-green);
+}
+
+.title {
+  margin: 22px auto 0;
+  font-size: var(--h1);
+  line-height: 0.98;
+  letter-spacing: -0.045em;
+}
+
+.l1,
+.l2 {
+  display: block;
+  white-space: nowrap;
+}
+
+/* The second line rises out of a mask; the padding keeps descenders inside it. */
+.l2 {
+  overflow: hidden;
+  padding-bottom: 0.12em;
+  margin-bottom: -0.12em;
+}
+
+.l2inner {
+  display: block;
+  color: var(--accent-text);
+}
+
+.intro {
+  max-width: 660px;
+  margin: 30px auto 0;
+}
+
+.lede {
+  font-size: calc(var(--step-0) * 1.14);
+  line-height: 1.55;
+  color: var(--ink-2);
+}
+
+.ctas {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 30px;
+}
+
+/* ---------- the phone ---------- */
+.arrival {
+  position: relative;
+  width: min(92vw, 1100px);
+  margin: 60px auto 0;
+  aspect-ratio: 2056 / 956;
+}
+
+.device {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 2056px;
+  transform: scale(calc(min(var(--vwn, 1280) * 0.92, 1100) / 2056));
+  transform-origin: 0 0;
+}
+
+.screen {
+  background: transparent;
+}
+
+.stream {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: 200px 1600px 200px;
+}
+
+.side {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 48px;
+  background: #04060c;
+  color: #8792bb;
+}
+
+/* Clear of the camera hole, which sits in the left bar. */
+.side:first-child {
+  padding-left: 44px;
+}
+
+.sideBtn {
+  display: grid;
+  place-items: center;
+  width: 116px;
+  height: 116px;
+  border-radius: 50%;
+}
+
+.sideOn {
+  background: rgb(90 209 255 / 0.14);
+  color: var(--sky);
+}
+
+.view {
+  position: relative;
+  overflow: hidden;
+}
+
+/* The screen's light on the dark around it; only the scroll scene draws it. */
+.glow {
+  display: none;
+}
+
+:global(html.motion) .glow {
+  position: absolute;
+  z-index: 0;
+  left: var(--cl, 0);
+  top: var(--ct, 0);
+  display: block;
+  width: var(--cw, 0);
+  height: var(--ch, 0);
+  background: radial-gradient(closest-side, rgb(47 123 255 / 0.26), rgb(91 75 255 / 0.1) 60%, transparent);
+  transform: scale(1.45, 1.6);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* ---------- callouts ---------- */
+.callouts {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  max-width: 900px;
+  margin: 34px auto 0;
+  padding: 0 var(--gutter);
+  list-style: none;
+}
+
+.callouts li {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 11px 16px 11px 13px;
+  border-radius: 999px;
+  background: rgb(12 18 36 / 0.88);
+  box-shadow:
+    inset 0 0 0 1px var(--line-2),
+    0 18px 36px -18px rgb(0 0 0 / 0.9);
+  font-size: 14.5px;
+  line-height: 1.2;
+  color: var(--ink);
+  white-space: nowrap;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+
+.callouts svg {
+  flex: none;
+  color: var(--sky);
+}
+
+/* ---------- the scroll scene ---------- */
+:global(html.motion) .hero {
+  height: 250svh;
+}
+
+:global(html.motion) .stage {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  padding: 0;
+  overflow: hidden;
+}
+
+:global(html.motion) .intro {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(var(--pad-top) + 54px + 1.12 * var(--h1));
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+:global(html.motion) .l2inner {
+  transform: translateY(110%);
+}
+
+:global(html.motion) .arrival {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: auto;
+  margin: 0;
+  aspect-ratio: auto;
+  opacity: 0;
+  visibility: hidden;
+}
+
+:global(html.motion) .device {
+  left: 50%;
+  transform: none;
+  will-change: transform;
+}
+
+:global(html.motion) .device [data-part='frame'],
+:global(html.motion) .device [data-part='keys'],
+:global(html.motion) .device [data-part='camera'],
+:global(html.motion) .device [data-side] {
+  opacity: 0;
+  visibility: hidden;
+}
+
+:global(html.motion) .callouts {
+  position: absolute;
+  z-index: 2;
+  left: var(--cl, 0);
+  top: var(--ct, 0);
+  display: block;
+  width: var(--cw, 0);
+  height: var(--ch, 0);
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  pointer-events: none;
+}
+
+:global(html.motion) .callouts li {
+  position: absolute;
+  opacity: 0;
+  visibility: hidden;
+}
+
+:global(html.motion) .callouts li:nth-child(1) {
+  left: -3%;
+  top: 9%;
+}
+
+:global(html.motion) .callouts li:nth-child(2) {
+  right: -3%;
+  top: 19%;
+}
+
+:global(html.motion) .callouts li:nth-child(3) {
+  left: 5%;
+  bottom: -4%;
+}
+
+:global(html.motion) .callouts li:nth-child(4) {
+  right: 7%;
+  bottom: -6%;
+}
+
+@media (max-width: 699px) {
+  .callouts li {
+    font-size: 13px;
+    padding: 9px 12px 9px 10px;
+  }
+
+  :global(html.motion) .callouts {
+    top: calc(var(--ct, 0) + var(--ch, 0) + 22px);
+    left: var(--gutter);
+    right: var(--gutter);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    width: auto;
+    height: auto;
+  }
+
+  :global(html.motion) .callouts li {
+    position: static;
+    justify-content: center;
+    white-space: normal;
+    text-align: center;
+  }
+}

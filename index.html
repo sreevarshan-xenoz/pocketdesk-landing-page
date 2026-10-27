@@ -19,6 +19,19 @@
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="Pocketdesk: a desktop on a phone, tucked into a pocket" />
     <meta name="twitter:card" content="summary_large_image" />
+    <script>
+      // Before first paint: the window's width as a plain number (CSS scales the
+      // phone with it), and whether the scroll scenes run at all.
+      ;(function () {
+        var d = document.documentElement
+        function size() {
+          d.style.setProperty('--vwn', String(innerWidth))
+        }
+        size()
+        addEventListener('resize', size)
+        if (!matchMedia('(prefers-reduced-motion: reduce)').matches) d.classList.add('motion')
+      })()
+    </script>
   </head>
   <body>
     <div id="root"><!--app-html--></div>
