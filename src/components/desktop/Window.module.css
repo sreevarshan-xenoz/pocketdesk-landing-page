@@ -12,6 +12,10 @@
   overflow: hidden;
 }
 
+.inline {
+  position: relative;
+}
+
 .focused {
   border-color: rgb(160 190 255 / 0.22);
   box-shadow:
