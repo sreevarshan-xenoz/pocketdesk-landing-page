@@ -1,0 +1,63 @@
+<template>
+  <style>
+    /* film.css */
+    #root {
+      position: absolute;
+      inset: 0;
+    }
+  </style>
+  <div id="root" data-composition-id="anywhere" data-width="1920" data-height="1080" data-layout-allow-overflow data-layout-allow-overlap>
+    <!--scene-->
+  </div>
+  <script>
+    // 3. The phone leaves home; the road through both routers; then into the laptop at home.
+    const tl = gsap.timeline({ paused: true })
+    const punchLength = 744 // 232 to 976 across
+
+    tl.fromTo('#any-scene', { x: 1100, filter: 'blur(18px)' }, { x: 0, filter: 'blur(0px)', duration: 0.4, ease: 'expo.out' }, 0)
+    tl.fromTo('#any-t1', { opacity: 0, filter: 'blur(10px)' }, { opacity: 1, filter: 'blur(0px)', duration: 0.35, ease: 'power3.out' }, 0.3)
+    tl.fromTo(['#any-punch', '#any-punch-label', '#any-relay'], { opacity: 0 }, { opacity: 0, duration: 0.01 }, 0)
+    tl.fromTo('#any-punch', { strokeDasharray: punchLength, strokeDashoffset: punchLength }, { strokeDasharray: punchLength, strokeDashoffset: punchLength, duration: 0.01 }, 0)
+
+    // at home, on the Wi-Fi
+    tl.fromTo('#any-pk1', { attr: { cx: 232 }, opacity: 1 }, { attr: { cx: 306 }, opacity: 1, duration: 0.35, ease: 'none', repeat: 1 }, 0.4)
+    tl.to('#any-pk1', { opacity: 0, duration: 0.05 }, 1.1)
+
+    // the phone leaves home
+    tl.to('#any-wifi', { opacity: 0, duration: 0.2, ease: 'power1.in' }, 1)
+    tl.fromTo('#any-phone', { x: 330, y: 262 }, { x: 330, y: 262, duration: 0.01 }, 0)
+    tl.to(
+      '#any-phone',
+      {
+        keyframes: [
+          { x: 665, y: 196, duration: 0.4, ease: 'power2.in' },
+          { x: 1000, y: 262, duration: 0.4, ease: 'power2.out' },
+        ],
+      },
+      1.05,
+    )
+
+    // the road through both routers, each lit as it goes through
+    tl.to('#any-punch', { opacity: 1, duration: 0.05 }, 1.9)
+    tl.to('#any-punch', { strokeDashoffset: 0, duration: 0.6, ease: 'none' }, 1.9)
+    tl.fromTo('#any-spark-a', { opacity: 0, scale: 0.3, transformOrigin: '50% 50%' }, { opacity: 1, scale: 1, duration: 0.08, ease: 'power2.out' }, 2.05)
+    tl.to('#any-spark-a', { opacity: 0, scale: 1.6, duration: 0.25, ease: 'power2.out' }, 2.13)
+    tl.fromTo('#any-spark-b', { opacity: 0, scale: 0.3, transformOrigin: '50% 50%' }, { opacity: 1, scale: 1, duration: 0.08, ease: 'power2.out' }, 2.34)
+    tl.to('#any-spark-b', { opacity: 0, scale: 1.6, duration: 0.25, ease: 'power2.out' }, 2.42)
+    tl.to('#any-punch-label', { opacity: 1, duration: 0.3, ease: 'power1.out' }, 2.55)
+    tl.to('#any-relay', { opacity: 1, duration: 0.4, ease: 'power1.out' }, 2.75)
+
+    // packets both ways
+    tl.fromTo('#any-pk1', { attr: { cx: 232 }, opacity: 1 }, { attr: { cx: 976 }, opacity: 1, duration: 0.8, ease: 'none', repeat: 1, immediateRender: false }, 2.9)
+    tl.fromTo('#any-pk2', { attr: { cx: 976 }, opacity: 1 }, { attr: { cx: 232 }, opacity: 1, duration: 0.8, ease: 'none', repeat: 1 }, 3.3)
+
+    // into the laptop at home: its screen grows until it is the frame
+    tl.to('#any-t1', { opacity: 0, filter: 'blur(8px)', duration: 0.2, ease: 'power2.in' }, 4.6)
+    tl.to(['#any-pk1', '#any-pk2'], { opacity: 0, duration: 0.1 }, 4.7)
+    // the laptop's screen is at (309, 629) in the frame; scale the world about that point
+    tl.fromTo('#any-world', { x: 0, y: 0, scale: 1 }, { x: 309 * -13, y: 629 * -13, scale: 14, duration: 0.75, ease: 'power3.in' }, 4.7)
+    tl.to({}, { duration: 0.01 }, 5.48)
+
+    window.__timelines['anywhere'] = tl
+  </script>
+</template>

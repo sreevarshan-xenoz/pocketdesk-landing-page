@@ -1,0 +1,71 @@
+.head {
+  max-width: 640px;
+}
+
+.center {
+  max-width: 980px;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.center .lede {
+  max-width: 640px;
+  margin-inline: auto;
+}
+
+.center .eyebrow {
+  justify-content: center;
+}
+
+/* The brand window's three dots, then the section's name. */
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font: 600 15px/1 var(--font-sans);
+  color: var(--ink-2);
+}
+
+.dots {
+  display: flex;
+  gap: 5px;
+}
+
+.dots i {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--dot-red);
+}
+
+.dots i:nth-child(2) {
+  background: var(--dot-yellow);
+}
+
+.dots i:nth-child(3) {
+  background: var(--dot-green);
+}
+
+.title {
+  margin-top: 22px;
+  font-size: var(--step-4);
+  line-height: 0.98;
+  letter-spacing: -0.04em;
+}
+
+.md .title {
+  font-size: var(--step-3);
+  line-height: 1.02;
+}
+
+.title em {
+  font-style: normal;
+  color: var(--accent-text);
+}
+
+.lede {
+  margin-top: 24px;
+  font-size: calc(var(--step-0) * 1.08);
+  line-height: 1.6;
+  color: var(--ink-2);
+}

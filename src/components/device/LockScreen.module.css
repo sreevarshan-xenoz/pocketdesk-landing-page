@@ -1,0 +1,101 @@
+.lock {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: linear-gradient(180deg, #050a1d 0%, #0b1844 55%, #1b2f7a 78%, #0a1336 100%);
+  color: #eef1fb;
+  font-family: var(--font-sans);
+}
+
+.ridges {
+  position: absolute;
+  inset: auto 0 0;
+  width: 100%;
+  height: 34%;
+  max-width: none;
+}
+
+.clock {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 9cqw;
+}
+
+.clock b {
+  font: 600 21cqw/1 var(--font-display);
+  letter-spacing: -0.04em;
+}
+
+.clock span {
+  margin-top: 2cqw;
+  font-size: 3.9cqw;
+  color: #c4cce8;
+}
+
+.stack {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 2.4cqw;
+  margin: 8cqw 4.5cqw 0;
+}
+
+.notice {
+  padding: 3.6cqw 4cqw 4cqw;
+  border-radius: 5cqw;
+  background: rgb(22 30 56 / 0.86);
+  box-shadow:
+    inset 0 0 0 1px rgb(160 180 255 / 0.12),
+    0 3cqw 8cqw -3cqw rgb(0 0 0 / 0.7);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+
+.noticeHead {
+  display: flex;
+  align-items: center;
+  gap: 2cqw;
+  font-size: 3.1cqw;
+  color: #aab3d1;
+}
+
+.appIcon {
+  display: grid;
+  place-items: center;
+  width: 5cqw;
+  height: 5cqw;
+  border-radius: 1.6cqw;
+  color: #fff;
+}
+
+.appIcon svg {
+  width: 3.4cqw;
+  height: 3.4cqw;
+}
+
+.appName {
+  font-weight: 600;
+  color: #dfe5fa;
+}
+
+.time {
+  color: #7f8ab0;
+}
+
+.noticeTitle {
+  display: block;
+  margin-top: 2cqw;
+  font-size: 4cqw;
+  font-weight: 600;
+}
+
+.noticeBody {
+  margin-top: 0.8cqw;
+  font-size: 3.7cqw;
+  line-height: 1.35;
+  color: #c9d0ea;
+}

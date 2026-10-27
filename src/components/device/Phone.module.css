@@ -1,0 +1,102 @@
+.phone {
+  position: relative;
+  width: 100%;
+  container-type: inline-size;
+}
+
+/* Proportions of a 20:9 phone: screen 2000x900, bezel 28, outer radius 110. */
+.portrait {
+  aspect-ratio: 956 / 2056;
+  --r: 11.5cqw;
+  --b: 2.93cqw;
+  --sr: 9cqw;
+}
+
+.landscape {
+  aspect-ratio: 2056 / 956;
+  --r: 5.35cqw;
+  --b: 1.36cqw;
+  --sr: 4.18cqw;
+}
+
+.frame {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--r);
+  background:
+    linear-gradient(145deg, rgb(255 255 255 / 0.16), transparent 28%, transparent 72%, rgb(255 255 255 / 0.1)),
+    linear-gradient(160deg, #2b3242, #10141d 45%, #0a0d14 60%, #232937);
+  box-shadow:
+    inset 0 0 0 1.5px rgb(255 255 255 / 0.09),
+    inset 0 0 0 3px rgb(0 0 0 / 0.6),
+    0 60px 120px -50px rgb(0 0 0 / 0.9),
+    0 30px 60px -30px rgb(20 40 110 / 0.55);
+}
+
+.screen {
+  position: absolute;
+  inset: var(--b);
+  overflow: hidden;
+  border-radius: var(--sr);
+  background: #000;
+}
+
+.screen::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  border-radius: inherit;
+  background: linear-gradient(118deg, rgb(255 255 255 / 0.07), transparent 32%);
+  pointer-events: none;
+}
+
+.camera {
+  position: absolute;
+  z-index: 6;
+  border-radius: 50%;
+  background: #04060b;
+  box-shadow:
+    inset 0 0 0 1px rgb(255 255 255 / 0.07),
+    inset 1px 1px 2px rgb(90 120 255 / 0.25);
+}
+
+.portrait .camera {
+  top: calc(var(--b) + 2.6cqw);
+  left: 50%;
+  width: 3.4cqw;
+  height: 3.4cqw;
+  transform: translateX(-50%);
+}
+
+.landscape .camera {
+  top: 50%;
+  left: calc(var(--b) + 1.2cqw);
+  width: 1.6cqw;
+  height: 1.6cqw;
+  transform: translateY(-50%);
+}
+
+/* Volume and power keys on the long edge. */
+.keys {
+  position: absolute;
+  border-radius: 1cqw;
+  background: linear-gradient(90deg, #1b202b, #3a4152);
+}
+
+.portrait .keys {
+  right: -0.9cqw;
+  top: 24%;
+  width: 1.2cqw;
+  height: 16%;
+  box-shadow: 0 calc(21cqw) 0 0 #2a303d;
+}
+
+.landscape .keys {
+  top: -0.42cqw;
+  left: 60%;
+  width: 7.4cqw;
+  height: 0.56cqw;
+  background: linear-gradient(180deg, #3a4152, #1b202b);
+  box-shadow: 9.6cqw 0 0 0 #2a303d;
+}

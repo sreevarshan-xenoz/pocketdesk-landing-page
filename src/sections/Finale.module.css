@@ -1,0 +1,57 @@
+.section {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: clamp(96px, 14vh, 168px) var(--gutter) clamp(110px, 16vh, 180px);
+  overflow: hidden;
+  text-align: center;
+}
+
+.glow {
+  position: absolute;
+  left: 50%;
+  top: clamp(80px, 12vh, 140px);
+  width: min(720px, 120vw);
+  aspect-ratio: 1;
+  background: radial-gradient(closest-side, rgb(47 123 255 / 0.2), rgb(91 75 255 / 0.08) 55%, transparent);
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.mark {
+  position: relative;
+  width: clamp(220px, 30vw, 380px);
+  overflow: visible;
+}
+
+.copy {
+  position: relative;
+  margin-top: clamp(20px, 4vh, 40px);
+}
+
+.copy h2 {
+  font-size: var(--step-4);
+  line-height: 1;
+  letter-spacing: -0.045em;
+}
+
+.copy h2 em {
+  display: block;
+  font-style: normal;
+  color: var(--accent-text);
+}
+
+.copy p {
+  margin-top: 20px;
+  font-size: var(--step-1);
+  color: var(--ink-2);
+}
+
+.ctas {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 32px;
+}

@@ -1,0 +1,65 @@
+/* Inside a <Phone>, 1cqw is a hundredth of the phone's width. */
+.screen {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(180deg, #0b1120, #070b16);
+  color: #e7ecfb;
+  font-family: var(--font-sans);
+}
+
+.status {
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: space-between;
+  height: 9cqw;
+  padding: 2cqw 7cqw 0;
+  font-size: 3.6cqw;
+  font-weight: 600;
+}
+
+.statusIcons {
+  display: flex;
+  gap: 1.6cqw;
+}
+
+.statusIcons svg {
+  width: 4.2cqw;
+  height: 4.2cqw;
+}
+
+.appbar {
+  display: flex;
+  flex: none;
+  align-items: center;
+  gap: 2.6cqw;
+  height: 12cqw;
+  padding: 0 5cqw;
+  font-size: 4.6cqw;
+  font-weight: 600;
+}
+
+.back {
+  font-size: 7cqw;
+  line-height: 1;
+  color: #9aa6cc;
+}
+
+.title {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.chip {
+  padding: 1.2cqw 2.8cqw;
+  border-radius: 99cqw;
+  background: rgb(90 209 255 / 0.14);
+  color: var(--sky);
+  font-size: 3.2cqw;
+  font-weight: 600;
+}
