@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { FilmModal } from './components/FilmModal'
 import { Nav } from './components/Nav'
 import { initMotion } from './lib/motion'
+import { Control } from './sections/Control'
 import { Hero } from './sections/Hero'
 
 export default function App() {
@@ -16,7 +17,8 @@ export default function App() {
       <Nav />
       <main id="main">
         <Hero onWatchFilm={() => setFilm(true)} />
-        <div style={{ height: '120vh' }} />
+        <Control />
+        <div style={{ height: '60vh' }} />
       </main>
       <FilmModal open={film} onClose={() => setFilm(false)} />
     </>

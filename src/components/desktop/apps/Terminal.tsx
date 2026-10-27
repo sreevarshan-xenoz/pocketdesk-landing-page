@@ -2,15 +2,8 @@ import { Fragment, useEffect, useRef, useState } from 'react'
 import { useInView } from '../../../hooks/useInView'
 import { cx } from '../../../lib/cx'
 import { prefersReducedMotion } from '../../../lib/motion'
+import type { Command, Line } from '../../../lib/term'
 import s from './apps.module.css'
-
-export type SegKind = 'prompt' | 'cmd' | 'ok' | 'dim' | 'warn' | 'accent' | 'bold' | 'err'
-export type Seg = string | [SegKind, string]
-export type Line = Seg[]
-export interface Command {
-  cmd: string
-  out: Line[]
-}
 
 export function TermLine({ line }: { line: Line }) {
   return (
@@ -30,6 +23,28 @@ interface TerminalProps {
   live?: boolean
   prompt?: string
   className?: string
+}
+
+/** A prompt with what has been typed so far and the caret, for shells driven from outside. */
+export function PromptLine({ prompt = '~ $', typed }: { prompt?: string; typed: string }) {
+  return (
+    <div className={s.tline}>
+      <span className={s.prompt}>{prompt}</span> <span className={s.cmd}>{typed}</span>
+      <span className={s.caret} />
+    </div>
+  )
+}
+
+/** A shell whose lines and typing come from outside (the Control demo's keyboard). */
+export function ShellView({ lines, typed }: { lines: Line[]; typed: string }) {
+  return (
+    <div className={s.term}>
+      {lines.map((line, i) => (
+        <TermLine key={i} line={line} />
+      ))}
+      <PromptLine typed={typed} />
+    </div>
+  )
 }
 
 /** A shell: past lines, then the prompt typing the script. Not live: the first command, already run. */

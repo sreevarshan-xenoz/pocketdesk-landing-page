@@ -1,0 +1,88 @@
+.section {
+  position: relative;
+  padding: clamp(96px, 14vh, 168px) 0;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 4.4fr) minmax(0, 7.6fr);
+  gap: clamp(36px, 5vw, 80px);
+  align-items: center;
+}
+
+.tabs {
+  display: inline-flex;
+  gap: 4px;
+  margin-top: 36px;
+  padding: 4px;
+  border-radius: 999px;
+  background: rgb(255 255 255 / 0.035);
+  box-shadow: inset 0 0 0 1px var(--line);
+}
+
+.tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 44px;
+  padding: 0 18px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--ink-2);
+  font-size: 15.5px;
+  font-weight: 500;
+  cursor: pointer;
+  transition:
+    background-color 0.25s,
+    color 0.25s;
+}
+
+.tab:hover {
+  color: var(--ink);
+}
+
+.tabOn,
+.tabOn:hover {
+  background: var(--ink);
+  color: #070b18;
+}
+
+.hint {
+  min-height: 3.2em;
+  margin-top: 18px;
+  color: var(--ink);
+}
+
+.more {
+  margin-top: 12px;
+  font-size: 15px;
+  color: var(--ink-3);
+}
+
+.stage {
+  position: relative;
+  min-width: 0;
+}
+
+@media (max-width: 960px) {
+  .grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .stage {
+    order: 2;
+  }
+}
+
+@media (max-width: 520px) {
+  .tabs {
+    display: flex;
+  }
+
+  .tab {
+    flex: 1;
+    justify-content: center;
+    padding: 0 10px;
+  }
+}

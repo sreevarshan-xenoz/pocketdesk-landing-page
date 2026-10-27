@@ -9,6 +9,8 @@ interface PhoneProps {
   screenClassName?: string
   style?: CSSProperties
   ref?: Ref<HTMLDivElement>
+  /** Hidden from assistive tech unless its screen holds controls (the Control demo). */
+  decorative?: boolean
 }
 
 /**
@@ -16,9 +18,9 @@ interface PhoneProps {
  * of the phone's width, so screens drawn in it scale with the phone.
  * Parts carry data-part (frame, screen, camera, keys) for scenes that animate them.
  */
-export function Phone({ orientation = 'portrait', children, className, screenClassName, style, ref }: PhoneProps) {
+export function Phone({ orientation = 'portrait', children, className, screenClassName, style, ref, decorative = true }: PhoneProps) {
   return (
-    <div ref={ref} className={cx(s.phone, s[orientation], className)} style={style} aria-hidden="true">
+    <div ref={ref} className={cx(s.phone, s[orientation], className)} style={style} aria-hidden={decorative || undefined}>
       <div className={s.frame} data-part="frame" />
       <span className={s.keys} data-part="keys" />
       <div className={cx(s.screen, screenClassName)} data-part="screen">
