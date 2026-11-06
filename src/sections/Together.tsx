@@ -18,7 +18,7 @@ const CARDS: Array<{ icon: IconName; title: string; body: string }> = [
   {
     icon: 'window',
     title: 'Carry a window across.',
-    body: 'Drag a window past a Sway or Hyprland screen’s edge and it opens on the other computer, or borrow one from the menu, on Windows too, and on GNOME to look at.',
+    body: 'Drag a window past a Sway or Hyprland screen’s edge and it opens on the other computer, or borrow one from the menu, on Windows too.',
   },
 ]
 
