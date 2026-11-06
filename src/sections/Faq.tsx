@@ -17,7 +17,11 @@ const QUESTIONS: Array<{ q: string; a: string }> = [
   },
   {
     q: 'Which phones and computers does it run on?',
-    a: 'Android 8 and newer for the phone. Windows 10 and 11, and Linux on Wayland (Hyprland, Sway, GNOME, KDE) or X11, for the computer. macOS and iPhone are not supported.',
+    a: 'Android 8 and newer for the phone. Windows 10 and 11, and Linux on Wayland (Hyprland, Sway, GNOME, KDE) or X11, for the computer, and a Wear OS tile for the watch. macOS and iPhone are not supported.',
+  },
+  {
+    q: 'Can my computers use it with each other?',
+    a: 'Yes. Pair two of your computers both ways and they share one keyboard and mouse, show each other’s screens in a window, and hand windows across. Your phone can pair with all of them in the same step.',
   },
   {
     q: 'Does it need a graphics card?',

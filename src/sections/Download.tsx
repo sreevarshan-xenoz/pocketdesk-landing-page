@@ -33,7 +33,7 @@ const PLATFORMS: Array<{
     name: 'Linux',
     icon: 'linux',
     req: 'x86-64 · Wayland or X11',
-    note: 'Hyprland, Sway, GNOME and KDE. It starts at login as a systemd user unit.',
+    note: 'Hyprland, Sway, GNOME and KDE. It starts at login as a systemd user unit. On Arch: yay -S pocketdesk.',
     label: (a) => (a?.name.endsWith('.deb') ? 'Download the .deb' : a ? 'Download the .tar.gz' : 'Download for Linux'),
     alt: () => 'or the .tar.gz, for any distribution',
   },
@@ -122,7 +122,10 @@ export function Download() {
           <a href={`${REPO}/releases`} rel="noopener">
             All releases
           </a>
-          <a href={`${REPO}#readme`} rel="noopener">
+          <a href="https://aur.archlinux.org/packages/pocketdesk" rel="noopener">
+            Arch (AUR)
+          </a>
+          <a href={`${REPO}#quickstart`} rel="noopener">
             Install guide
           </a>
         </p>

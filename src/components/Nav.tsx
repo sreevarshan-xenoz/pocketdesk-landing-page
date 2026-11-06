@@ -10,8 +10,10 @@ import s from './Nav.module.css'
 const LINKS = [
   ['control', 'Control'],
   ['both-ways', 'Both ways'],
+  ['together', 'Computers'],
   ['anywhere', 'Anywhere'],
   ['private', 'Privacy'],
+  ['new', 'New'],
   ['download', 'Download'],
 ] as const
 
