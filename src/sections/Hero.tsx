@@ -9,7 +9,7 @@ import { useRelease } from '../hooks/useRelease'
 import { cx } from '../lib/cx'
 import { FILM } from '../lib/film'
 import { gsap, motionOn, offsetWithin, ScrollTrigger, useGSAP } from '../lib/gsap'
-import type { OS } from '../lib/os'
+import { downloadLabel } from '../lib/os'
 import { RELEASES } from '../lib/release'
 import s from './Hero.module.css'
 
@@ -24,13 +24,6 @@ const CALLOUTS: Array<{ icon: IconName; text: string }> = [
   { icon: 'lock', text: 'QUIC and TLS 1.3, keys pinned' },
   { icon: 'globe', text: 'No account. No port forward.' },
 ]
-
-export function downloadLabel(os: OS | null): string {
-  if (os === 'windows') return 'Download for Windows'
-  if (os === 'linux') return 'Download for Linux'
-  if (os === 'android') return 'Get the Android app'
-  return 'Download'
-}
 
 interface Geometry {
   vw: number

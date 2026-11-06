@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'vitest'
-import { detectOS } from './os'
+import { detectOS, downloadLabel } from './os'
 
 const UA = {
   windows: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36',
@@ -23,4 +23,16 @@ describe('detectOS', () => {
   test('client hints win over a frozen agent string', () =>
     expect(detectOS({ userAgent: UA.linux, userAgentData: { platform: 'Windows' } })).toBe('windows'))
   test('an empty agent is other', () => expect(detectOS({ userAgent: '' })).toBe('other'))
+})
+
+describe('downloadLabel', () => {
+  test('names the system it fits', () => {
+    expect(downloadLabel('windows')).toBe('Download for Windows')
+    expect(downloadLabel('linux')).toBe('Download for Linux')
+    expect(downloadLabel('android')).toBe('Get the Android app')
+  })
+  test('a system with no download, or not yet known, is plain', () => {
+    expect(downloadLabel('other')).toBe('Download')
+    expect(downloadLabel(null)).toBe('Download')
+  })
 })

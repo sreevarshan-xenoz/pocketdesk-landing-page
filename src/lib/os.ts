@@ -18,3 +18,11 @@ export function detectOS(nav: NavigatorLike): OS {
   if (/Linux|X11/i.test(ua)) return 'linux'
   return 'other'
 }
+
+/** The download button's words for the visitor's system. */
+export function downloadLabel(os: OS | null): string {
+  if (os === 'windows') return 'Download for Windows'
+  if (os === 'linux') return 'Download for Linux'
+  if (os === 'android') return 'Get the Android app'
+  return 'Download'
+}
