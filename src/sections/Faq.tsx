@@ -16,6 +16,10 @@ const QUESTIONS: Array<{ q: string; a: string }> = [
     a: 'No. After one session at home (or through Tailscale), the phone reaches the computer from anywhere with no port forward. Only waking a sleeping computer from outside needs one, or another always-on computer at home.',
   },
   {
+    q: 'What if the Wi-Fi goes down?',
+    a: 'Between a Windows computer and the Android phone bonded with it, the clipboard, notifications, the remote and small files keep going over Bluetooth while the two are in range. It is on by default and new, not yet checked on a phone. The screen still needs a network.',
+  },
+  {
     q: 'Which phones and computers does it run on?',
     a: 'Android 8 and newer for the phone. Windows 10 and 11, and Linux on Wayland (Hyprland, Sway, GNOME, KDE) or X11, for the computer, and a Wear OS tile for the watch. macOS and iPhone are not supported.',
   },
