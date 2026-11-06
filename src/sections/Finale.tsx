@@ -6,8 +6,8 @@ import { jumpTo } from '../components/Nav'
 import { useOS } from '../hooks/useOS'
 import { cx } from '../lib/cx'
 import { gsap, motionOn, useGSAP } from '../lib/gsap'
+import { downloadLabel } from '../lib/os'
 import { REPO } from '../lib/release'
-import { downloadLabel } from './Hero'
 import s from './Finale.module.css'
 
 /** The last scene: the window, still showing a desktop, drops into the pocket and becomes the mark. */
