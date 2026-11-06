@@ -10,10 +10,12 @@ A one-page React + Vite site, prerendered at build time, that tells the product'
 | Hero | A desktop wider than the window shrinks into a phone as you scroll: "Your desktop. In your pocket." |
 | Control | A demo the visitor drives: a trackpad (drag the laptop's pointer), a keyboard (a tiny shell that knows `pocketdesk status` and `ring`), a pen (draw on the phone, it appears on the laptop). |
 | Both ways | Four beats between a laptop and a phone: the clipboard, a text answered from the laptop, a file, ringing the phone. |
+| Together | Two screens, a window crossing the seam: one keyboard and mouse across computers, one's screen in a window on another, windows carried across. |
 | Anywhere | Home Wi-Fi, Tailscale, then the internet: iroh's path through both routers, with the relay as the fallback. |
 | Yours alone | Pairing by QR code (a real one: it opens the source), then per-phone switches, ask-first sessions, private copies. |
 | For your terminal | `pocketdesk done`, `ask` and `link`, with the phone answering beside the terminal. |
-| Open source, Download, Questions | The README's comparison, downloads from the latest release, the FAQ. |
+| New in 0.9.0 | A grid of the release's features: phone apps on the computer, the webcam, approving with the phone, and the rest. |
+| Open source, Download, Questions | The README's comparison, downloads from the latest release (and the AUR), the FAQ. |
 | Finale | The phone drops into the pocket and becomes the logo. |
 
 Every claim about Pocketdesk on the page comes from the main repository's README. The names, files and

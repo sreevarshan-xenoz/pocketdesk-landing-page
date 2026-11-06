@@ -13,6 +13,8 @@ import { Hero } from './sections/Hero'
 import { OpenSource } from './sections/OpenSource'
 import { Private } from './sections/Private'
 import { Scripts } from './sections/Scripts'
+import { Together } from './sections/Together'
+import { WhatsNew } from './sections/WhatsNew'
 
 export default function App() {
   const [film, setFilm] = useState(false)
@@ -28,9 +30,11 @@ export default function App() {
         <Hero onWatchFilm={() => setFilm(true)} />
         <Control />
         <BothWays />
+        <Together />
         <Anywhere />
         <Private />
         <Scripts />
+        <WhatsNew />
         <OpenSource />
         <Download />
         <Faq />

@@ -18,11 +18,16 @@ const PRODUCTS = ['Pocketdesk', 'RustDesk', 'Sunshine + Moonlight', 'KDE Connect
 
 /* As the main repository's README compares them. */
 const ROWS: Array<[string, Cell, Cell, Cell, Cell]> = [
+  ['See and drive the computer from a phone', 'yes', 'yes', 'yes', { mark: 'part', note: 'keyboard and touchpad' }],
+  ['See and drive the phone from the computer', 'yes', { mark: 'part', note: 'needs permissions' }, 'no', 'no'],
+  ['Notifications, texts and calls on the computer', { mark: 'yes', note: 'checked on Windows' }, 'no', 'no', 'yes'],
+  ['Clipboard and files, both ways', { mark: 'yes', note: 'files checked on Windows' }, 'yes', { mark: 'part', note: 'partly' }, 'yes'],
+  ['One keyboard and mouse across computers', { mark: 'yes', note: 'partly device-checked' }, 'no', 'no', 'no'],
   ['From outside, without a port forward or VPN', { mark: 'yes', note: 'after one session at home' }, 'yes', { mark: 'part', note: 'UPnP or a forward' }, 'no'],
+  ['No account needed', 'yes', 'yes', 'yes', 'yes'],
   ['Wayland-native', 'yes', { mark: 'part', note: 'partial' }, { mark: 'part', note: 'partial' }, 'yes'],
   ['Hyprland optimized', 'yes', 'no', { mark: 'part', note: 'limited' }, { mark: 'part', note: 'limited' }],
   ['Works with KDE Connect devices', { mark: 'part', note: 'most features' }, 'no', 'no', 'yes'],
-  ['Screen streaming', 'yes', 'yes', 'yes', 'no'],
   ['Open source', 'yes', 'yes', 'yes', 'yes'],
 ]
 

@@ -164,8 +164,8 @@ export function Hero({ onWatchFilm }: { onWatchFilm: () => void }) {
           </h1>
           <div ref={intro} className={s.intro}>
             <p className={s.lede}>
-              Your Windows or Linux computer, live on your Android phone. Drive it, hear it, and pass copies, files and
-              messages between the two, at home or from anywhere.
+              Your Windows or Linux computer, live on your Android phone, and your computers on each other. Drive it, hear
+              it, and pass copies, files and messages both ways, at home or from anywhere.
             </p>
             <div className={s.ctas}>
               <a className={cx(b.btn, b.primary)} href="#download" onClick={jumpTo('download')}>
