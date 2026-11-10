@@ -17,7 +17,7 @@ const QUESTIONS: Array<{ q: string; a: string }> = [
   },
   {
     q: 'What if the Wi-Fi goes down?',
-    a: 'Between a Windows computer and the Android phone bonded with it, the clipboard, notifications, the remote and small files keep going over Bluetooth while the two are in range. The screen comes along too, at a lower quality (about 480 lines, 15 frames a second), and a file waits while it runs. It is on by default and new, not yet checked on a phone.',
+    a: 'Between a Windows computer and the Android phone bonded with it, the clipboard, notifications, the remote and small files keep going over Bluetooth while the two are in range. The screen comes along too, at a lower quality (about 480 lines, 15 frames a second), and files still go while it runs. It is on by default and new, not yet checked on a phone.',
   },
   {
     q: 'Which phones and computers does it run on?',
